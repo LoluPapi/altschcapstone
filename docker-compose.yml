@@ -1,0 +1,27 @@
+version: '3.9'
+
+networks:
+  mynetwork:
+
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rtpassword
+      MYSQL_DATABASE: short_urls
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - mynetwork
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  goapp:
+    build: .
+    
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork

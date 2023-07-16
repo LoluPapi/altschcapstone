@@ -1,0 +1,5 @@
+CREATE TABLE short_urls (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    short_url VARCHAR(255) NOT NULL,
+    long_url VARCHAR(255) NOT NULL
+);
